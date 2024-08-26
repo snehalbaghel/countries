@@ -1,7 +1,19 @@
 import CountryDetails from "./components/country-details";
 import { Country } from "@/lib/api.types";
 import { fetchCountryData } from "@/lib/fetchCountryData";
+import { Metadata } from "next";
 import { notFound } from "next/navigation";
+
+export function generateMetadata({
+  params,
+}: {
+  params: { cca3: string };
+}): Metadata {
+  // read route params
+  return {
+    title: `Country Directory | ${params.cca3}`,
+  };
+}
 
 export default async function CountryPage({
   params,
