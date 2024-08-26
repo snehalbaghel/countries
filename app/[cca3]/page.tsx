@@ -1,6 +1,7 @@
 import CountryDetails from "./components/country-details";
 import { Country } from "@/lib/api.types";
 import { fetchCountryData } from "@/lib/fetchCountryData";
+import { notFound } from "next/navigation";
 
 export default async function CountryPage({
   params,
@@ -15,16 +16,18 @@ export default async function CountryPage({
     activeCountry?.borders?.includes(country.cca3)
   );
 
+  if (!activeCountry) {
+    notFound();
+  }
+
   return (
     <>
-      {activeCountry ? (
-        <div
-          className="fixed inset-0 bg-canvas w-full h-full md:relative md:col-span-2"
-          style={{ backgroundColor: "canvas" }}
-        >
-          <CountryDetails country={activeCountry} borders={borders} />
-        </div>
-      ) : null}
+      <div
+        className="fixed inset-0 bg-canvas w-full h-full md:relative md:col-span-2"
+        style={{ backgroundColor: "canvas" }}
+      >
+        <CountryDetails country={activeCountry} borders={borders} />
+      </div>
     </>
   );
 }
