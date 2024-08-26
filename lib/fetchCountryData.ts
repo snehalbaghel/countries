@@ -1,5 +1,6 @@
 import { Country } from "@/lib/api.types";
 import { REST_COUNTRIES_BASE_URL } from "@/constants";
+import { unstable_cache } from "next/cache";
 
 const REQUIRED_FIELDS = [
   "name",
@@ -24,7 +25,11 @@ const REQUIRED_FIELDS = [
 const fetchUrl = new URL("/v3.1/all", REST_COUNTRIES_BASE_URL);
 fetchUrl.searchParams.append("fields", REQUIRED_FIELDS.join(","));
 
-export async function fetchCountryData() {
+export const fetchCountryData = unstable_cache(fetchCountryDataUncached, [
+  "countries-data",
+]);
+
+async function fetchCountryDataUncached() {
   const countriesResponse = await fetch(fetchUrl, {
     method: "GET",
     cache: "force-cache",
