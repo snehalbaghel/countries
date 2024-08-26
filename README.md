@@ -12,6 +12,7 @@ Search is a client side function the search term is shared via react context.
 - Even while we're using `next/cache` on the API it seems to not work perfectly since its an unstable api (app router itself seems a little bleeding edge right now), a custom endpoint with self implemented caching would perform better at this point
 - While the list of countries is still fairly small using a **virtual list** will be more performant for mobile
 - Using a store instead of context although with the current feature-set it is not required.
+- Client side rendering for details page will be faster with the same amount of effort, I opted for server render for better SEO
 - Accessibility is not perfect
 
 ### Libraries used
