@@ -1,36 +1,14 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+### 🗺️ Architecture
 
-## Getting Started
+The entire website is server rendered (using next app router) with one static route i.e. the **root** and a **dynamic route** which renders the country details page. API call to [restcountries](https://restcountries.com/) is made on the server, we only use `/all` endpoint and ruse the **cached response** (using `next/cache`) to get the country details.
 
-First, run the development server:
+Search is a client side function the search term is shared via react context.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+> Components are co-located with the routes, other helper code is in the lib directory.
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+### ✍🏻 Considerations
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
-
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+- Data is used as is so operations of finding countries and bordering countries are O(n), can be improved with a map
+- Even while we're using `next/cache` on the API it seems to not work perfectly since its an unstable api (app router itself seems a little bleeding edge right now), a custom endpoint with self implemented caching would perform better at this point
+- While the list of countries is still fairly small using a **virtual list** will be more performant for mobile
+- Accessibility is not perfect
