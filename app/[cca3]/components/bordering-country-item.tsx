@@ -9,8 +9,11 @@ export default function BorderingCountryItem({
   const { flag, name, capital, continents } = country;
 
   return (
-    <Link href={`/${country.cca3}`}>
-      <li className="overflow-hidden group cursor-pointer w-full rounded-lg">
+    <li>
+      <Link
+        className="overflow-hidden group cursor-pointer w-full rounded-lg"
+        href={`/${country.cca3}`}
+      >
         <div className="flex items-center gap-x-4 p-2 px-1">
           <span className="text-4xl bg-white ring-1 ring-gray-900/10 rounded-md p-1 group-hover:bg-slate-50">
             {flag}
@@ -25,7 +28,7 @@ export default function BorderingCountryItem({
             <div className="text-sm text-gray-500">{continents.join(", ")}</div>
           </div>
         </div>
-      </li>
-    </Link>
+      </Link>
+    </li>
   );
 }
