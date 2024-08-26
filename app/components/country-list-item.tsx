@@ -14,8 +14,8 @@ export default function CountryListItem({ country }: { country: Country }) {
 
   return (
     // border
-    <Link href={`/${country.cca3}`}>
-      <li className="overflow-hidden group cursor-pointer w-full rounded-lg">
+    <li className="overflow-hidden group cursor-pointer w-full rounded-lg">
+      <Link href={`/${country.cca3}`}>
         <div
           className={`flex items-center gap-x-4 p-4 px-6 hover:bg-gray-100 ${
             pathname === `/${country.cca3}` ? "bg-blue-50" : ""
@@ -51,7 +51,7 @@ export default function CountryListItem({ country }: { country: Country }) {
             </span>
           </div>
         </div>
-      </li>
-    </Link>
+      </Link>
+    </li>
   );
 }

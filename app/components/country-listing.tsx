@@ -9,7 +9,7 @@ export default function CountryList(props: { countries: Country[] }) {
   const [searchValue, _setSearchValue] = useSearch();
 
   return (
-    <ul role="list" className="-mt-4 divide-y divide-gray-100">
+    <ul className="-mt-4 divide-y divide-gray-100">
       {countries
         .filter((c) =>
           c.name.common.toLowerCase().startsWith(searchValue.toLowerCase())
